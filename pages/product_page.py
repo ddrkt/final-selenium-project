@@ -19,6 +19,14 @@ class ProductPage(BasePage):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         add_to_basket_button.click()
 
+    def should_not_be_successful_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESSFUL_ADD_MESSAGE),\
+            "Successful message is present, but should not be"
+
+    def should_be_disappeared_successful_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESSFUL_ADD_MESSAGE),\
+            "Successful message should disappear, but it is not"
+
     def should_be_successful_message(self):
         assert self.is_element_present(*ProductPageLocators.ITEM_IN_SUCCESSFUL_ADD_MESSAGE),\
             "There is no successful add message for items to buy"
